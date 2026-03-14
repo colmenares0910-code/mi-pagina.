@@ -61,7 +61,6 @@
         .temp-img { width: 100%; border-radius: 12px; margin-bottom: 20px; border: 1px solid #222; display: none; }
         .close-gallery { background: #fff; color: #000; padding: 12px 25px; border-radius: 50px; cursor: pointer; font-weight: bold; margin-bottom: 30px; border: none; font-size: 0.8rem; }
 
-        /* MENSAJE DE SISTEMA VACÍO */
         #no-photos-msg {
             padding: 40px 20px;
             border: 1px dashed #222;
@@ -120,7 +119,7 @@
         .link-card span { flex-grow: 1; margin-left: 10px; font-size: 0.95rem; }
 
         .secret-card { background: rgba(40, 40, 40, 0.2); border: 1px dashed #444; margin-top: 25px; }
-        .temp-card { background: rgba(0, 150, 255, 0.05); border: 1px solid rgba(0, 150, 255, 0.15); }
+        .temp-card { background: rgba(0, 150, 255, 0.05); border: 1px solid rgba(0, 150, 255, 0.15); margin-top: 12px; }
         
         .footer { margin-top: 40px; color: #222; font-size: 0.65rem; text-align: center; animation-delay: 1.9s; }
         .invisible-counter { display: none; }
@@ -141,7 +140,7 @@
         <div class="gallery-content">
             <h2 style="letter-spacing: 5px; font-size: 0.8rem; color: #444; margin-bottom: 30px;">SISTEMA DE ARCHIVOS TEMPORALES</h2>
             
-            <img src="image.png" class="temp-img" data-expire="2026-03-14T23:59">
+            <img src="https://i.postimg.cc/XJqYyM4Q/image.png" class="temp-img" data-expire="2026-03-14T23:59">
             <img src="" class="temp-img" data-expire="2026-03-14T23:59">
 
             <div id="no-photos-msg" style="display:none;">
@@ -189,15 +188,15 @@
             <i class="far fa-envelope"></i><span>Email de Contacto</span>
         </a>
 
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQl3RBotbTP6BGGSRB_Rj6jwcSRXmCROpZ0lF-zIg_VLXihA/viewform" target="_blank" class="link-card secret-card">
+            <i class="fas fa-user-secret"></i><span>Mensaje Anónimo</span>
+        </a>
+
         <div class="link-card temp-card" onclick="toggleGallery()">
             <i class="far fa-images" style="color: var(--accent-blue);"></i>
             <span>Imágenes Temporales</span>
             <i class="fas fa-bolt" style="color: var(--accent-blue); font-size: 0.7rem; margin-left: auto;"></i>
         </div>
-
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQl3RBotbTP6BGGSRB_Rj6jwcSRXmCROpZ0lF-zIg_VLXihA/viewform" target="_blank" class="link-card secret-card">
-            <i class="fas fa-user-secret"></i><span>Mensaje Anónimo</span>
-        </a>
     </div>
 
     <div class="footer">
@@ -215,8 +214,6 @@
 
         function updateSystem() {
             const now = new Date();
-
-            // Lógica de Imágenes y Mensaje Vacío
             const images = document.querySelectorAll('.temp-img');
             let fotosActivas = 0;
 
@@ -232,18 +229,15 @@
                 }
             });
 
-            const msg = document.getElementById('no-photos-msg');
-            msg.style.display = (fotosActivas === 0) ? 'block' : 'none';
+            document.getElementById('no-photos-msg').style.display = (fotosActivas === 0) ? 'block' : 'none';
 
-            // Contador del Evento
-            const eventContainer = document.getElementById('event-container');
             const countdownEl = document.getElementById('countdown');
             let target = new Date();
             target.setDate(now.getDate() + (6 - now.getDay() + 7) % 7);
             target.setHours(15, 0, 0, 0);
             if (now > target && now.getDay() === 6) target.setDate(target.getDate() + 7);
             
-            eventContainer.style.display = 'block';
+            document.getElementById('event-container').style.display = 'block';
             const diff = target - now;
             const d = Math.floor(diff / 86400000);
             const h = Math.floor((diff % 86400000) / 3600000);
