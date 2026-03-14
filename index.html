@@ -4,15 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>sebbi/web • Oficial</title>
-    
     <link rel="icon" type="image/png" href="logo.png..png">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <style>
         :root {
             --bg-color: #030303;
-            --card-bg: #111;
             --text-color: #ffffff;
             --border-color: #2a2a2a;
             --polished-gradient: linear-gradient(135deg, #181818 0%, #111 50%, #181818 100%);
@@ -29,44 +25,47 @@
             min-height: 100vh;
             margin: 0;
             padding: 20px;
+            overflow-x: hidden;
         }
 
-        /* Animación suave al entrar */
+        /* IDEA 1: ESTRELLAS ANIMADAS */
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: moveStar linear infinite;
+        }
+
+        @keyframes moveStar {
+            from { transform: translateY(0); }
+            to { transform: translateY(-100vh); }
+        }
+
+        /* Resto de estilos */
         header, .links-container, .footer {
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.8s ease forwards;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            animation-delay: 0.2s;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            font-weight: 300;
-            margin: 0;
-            letter-spacing: -1px;
-        }
-
+        header { text-align: center; margin-bottom: 40px; animation-delay: 0.2s; }
+        header h1 { font-size: 3rem; font-weight: 300; margin: 0; letter-spacing: -1px; }
         header span { color: #555; font-weight: 200; }
-        
-        .sub-title {
-            font-size: 0.7rem;
-            letter-spacing: 4px;
-            color: #444;
-            text-transform: uppercase;
-            margin-top: 10px;
-        }
+        .sub-title { font-size: 0.7rem; letter-spacing: 4px; color: #444; text-transform: uppercase; margin-top: 10px; }
 
-        .links-container {
-            width: 100%;
-            max-width: 450px;
-            animation-delay: 0.4s;
-        }
-
+        .links-container { width: 100%; max-width: 450px; animation-delay: 0.4s; }
         .link-card {
             background: var(--polished-gradient);
             border: 1px solid var(--border-color);
@@ -85,71 +84,21 @@
         .link-card:hover {
             border-color: #444;
             background: linear-gradient(135deg, #222 0%, #1a1a1a 50%, #222 100%);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.07);
-            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
 
-        /* Efecto de brillo al pasar el mouse */
-        .link-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: all 0.5s;
-        }
+        .link-card i { font-size: 1.2rem; width: 30px; }
+        .link-card span { flex-grow: 1; margin-left: 10px; font-size: 0.95rem; }
+        .secret-card { background: rgba(40, 40, 40, 0.2); border: 1px dashed #444; margin-top: 30px; }
+        .footer { margin-top: 40px; color: #2a2a2a; font-size: 0.7rem; animation-delay: 0.6s; }
 
-        .link-card:hover::before {
-            left: 100%;
-        }
-
-        .link-card i {
-            font-size: 1.2rem;
-            width: 30px;
-        }
-
-        .link-card span {
-            flex-grow: 1;
-            margin-left: 10px;
-            font-size: 0.95rem;
-        }
-
-        .link-card .arrow {
-            color: #333;
-            font-size: 0.8rem;
-        }
-
-        /* Botón de mensaje anónimo */
-        .secret-card {
-            background: rgba(40, 40, 40, 0.2);
-            border: 1px dashed #444;
-            margin-top: 30px;
-        }
-        
-        .secret-card span {
-            color: #888;
-            font-style: italic;
-        }
-
-        .footer {
-            margin-top: 40px;
-            color: #2a2a2a;
-            font-size: 0.7rem;
-            text-align: center;
-            animation-delay: 0.6s;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
+
+    <div class="stars-container" id="stars"></div>
 
     <header>
         <h1>sebbi<span>/</span>web</h1>
@@ -158,40 +107,41 @@
 
     <div class="links-container">
         <a href="https://www.youtube.com/@Sebbioff" target="_blank" class="link-card">
-            <i class="fab fa-youtube"></i>
-            <span>YouTube</span>
-            <i class="fas fa-chevron-right arrow"></i>
+            <i class="fab fa-youtube"></i><span>YouTube</span><i class="fas fa-chevron-right"></i>
         </a>
-
-        <a href="https://www.tiktok.com/@kairhryensbaoe?lang=en" target="_blank" class="link-card">
-            <i class="fab fa-tiktok"></i>
-            <span>TikTok</span>
-            <i class="fas fa-chevron-right arrow"></i>
+        <a href="https://www.tiktok.com/@kairhryensbaoe" target="_blank" class="link-card">
+            <i class="fab fa-tiktok"></i><span>TikTok</span><i class="fas fa-chevron-right"></i>
         </a>
-
         <a href="https://www.roblox.com/users/1800241254/profile" target="_blank" class="link-card">
-            <i class="fas fa-gamepad"></i>
-            <span>Roblox</span>
-            <i class="fas fa-chevron-right arrow"></i>
+            <i class="fas fa-gamepad"></i><span>Roblox</span><i class="fas fa-chevron-right"></i>
         </a>
-
         <div style="border-bottom: 1px solid #1a1a1a; margin: 30px 0;"></div>
-        
         <a href="mailto:colmenares0910@gmail.com" class="link-card">
-            <i class="far fa-envelope"></i>
-            <span>colmenares0910@gmail.com</span>
+            <i class="far fa-envelope"></i><span>Gmail</span>
         </a>
-
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQl3RBotbTP6BGGSRB_Rj6jwcSRXmCROpZ0lF-zIg_VLXihA/viewform" target="_blank" class="link-card secret-card">
-            <i class="fas fa-user-secret"></i>
-            <span>Enviar mensaje anónimo...</span>
-            <i class="fas fa-lock arrow"></i>
+            <i class="fas fa-user-secret"></i><span>Buzón Anónimo</span><i class="fas fa-lock"></i>
         </a>
     </div>
 
-    <div class="footer">
-        © 2026 sebbi/web
-    </div>
+    <div class="footer">© 2026 sebbi/web</div>
 
+    <script>
+        function createStars() {
+            const container = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 3;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                container.appendChild(star);
+            }
+        }
+        createStars();
+    </script>
 </body>
 </html>
