@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sebbi/web • Recién Pulido</title>
+    <title>sebbi/web • Oficial</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #030303; /* Fondo aún más negro profundo */
-            --card-bg: #111; /* Color base del botón */
+            --bg-color: #030303;
+            --card-bg: #111;
             --text-color: #ffffff;
-            --border-color: #2a2a2a; /* Borde sutil inicial */
-            /* Efecto pulido: Un degradado metálico sutil */
+            --border-color: #2a2a2a;
             --polished-gradient: linear-gradient(135deg, #181818 0%, #111 50%, #181818 100%);
         }
 
@@ -28,7 +27,6 @@
             padding: 20px;
         }
 
-        /* Animación de entrada general */
         header, .links-container, .footer {
             opacity: 0;
             transform: translateY(20px);
@@ -64,7 +62,6 @@
             animation-delay: 0.4s;
         }
 
-        /* Estilo base de los botones con el acabado "pulido" */
         .link-card {
             background: var(--polished-gradient);
             border: 1px solid var(--border-color);
@@ -75,20 +72,18 @@
             align-items: center;
             text-decoration: none;
             color: white;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Suavizado de la animación */
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             position: relative;
-            overflow: hidden; /* Para que el brillo no se salga */
+            overflow: hidden;
         }
 
-        /* EFECTO DE BRILLO AL PASAR EL RATÓN */
         .link-card:hover {
-            border-color: #444; /* Borde se aclara un poco */
-            background: linear-gradient(135deg, #222 0%, #1a1a1a 50%, #222 100%); /* Fondo metálico más claro */
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.07); /* Un resplandor suave y blanco */
-            transform: translateY(-2px) scale(1.01); /* Pequeño realce */
+            border-color: #444;
+            background: linear-gradient(135deg, #222 0%, #1a1a1a 50%, #222 100%);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.07);
+            transform: translateY(-2px) scale(1.01);
         }
 
-        /* Efecto de destello "recién lavado" */
         .link-card::before {
             content: '';
             position: absolute;
@@ -113,7 +108,6 @@
             flex-grow: 1;
             margin-left: 10px;
             font-size: 0.95rem;
-            font-weight: 400;
         }
 
         .link-card .arrow {
@@ -121,9 +115,16 @@
             font-size: 0.8rem;
         }
 
-        /* Sección de Correo (sin flecha y con ícono diferente) */
-        .mail-card i {
-            font-size: 1.2rem;
+        /* Estilo especial para el botón secreto */
+        .secret-card {
+            background: rgba(40, 40, 40, 0.2);
+            border: 1px dashed #444;
+            margin-top: 30px;
+        }
+        
+        .secret-card span {
+            color: #888;
+            font-style: italic;
         }
 
         .footer {
@@ -134,7 +135,6 @@
             animation-delay: 0.6s;
         }
 
-        /* Animación Keyframes */
         @keyframes fadeInUp {
             to {
                 opacity: 1;
@@ -170,11 +170,16 @@
         </a>
 
         <div style="border-bottom: 1px solid #1a1a1a; margin: 30px 0;"></div>
-        <div class="sub-title" style="text-align:center; margin-bottom: 15px;">CORREO</div>
-
-        <a href="mailto:colmenares0910@gmail.com" class="link-card mail-card">
+        
+        <a href="mailto:colmenares0910@gmail.com" class="link-card">
             <i class="far fa-envelope"></i>
             <span>colmenares0910@gmail.com</span>
+        </a>
+
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQl3RBotbTP6BGGSRB_Rj6jwcSRXmCROpZ0lF-zIg_VLXihA/viewform" target="_blank" class="link-card secret-card">
+            <i class="fas fa-user-secret"></i>
+            <span>Enviar mensaje anónimo...</span>
+            <i class="fas fa-lock arrow"></i>
         </a>
     </div>
 
