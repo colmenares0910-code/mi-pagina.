@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sebbi/web</title>
+    <title>sebbi/web • Recién Pulido</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #0a0a0a;
-            --card-bg: #141414;
+            --bg-color: #030303; /* Fondo aún más negro profundo */
+            --card-bg: #111; /* Color base del botón */
             --text-color: #ffffff;
-            --border-color: #222;
+            --border-color: #2a2a2a; /* Borde sutil inicial */
+            /* Efecto pulido: Un degradado metálico sutil */
+            --polished-gradient: linear-gradient(135deg, #181818 0%, #111 50%, #181818 100%);
         }
 
         body {
@@ -46,12 +48,12 @@
             letter-spacing: -1px;
         }
 
-        header span { color: #666; font-weight: 200; }
+        header span { color: #555; font-weight: 200; }
         
         .sub-title {
             font-size: 0.7rem;
             letter-spacing: 4px;
-            color: #555;
+            color: #444;
             text-transform: uppercase;
             margin-top: 10px;
         }
@@ -62,9 +64,9 @@
             animation-delay: 0.4s;
         }
 
-        /* Estilo de los botones */
+        /* Estilo base de los botones con el acabado "pulido" */
         .link-card {
-            background: var(--card-bg);
+            background: var(--polished-gradient);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 18px 25px;
@@ -73,14 +75,33 @@
             align-items: center;
             text-decoration: none;
             color: white;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Suavizado de la animación */
             position: relative;
+            overflow: hidden; /* Para que el brillo no se salga */
         }
 
+        /* EFECTO DE BRILLO AL PASAR EL RATÓN */
         .link-card:hover {
-            border-color: #444;
-            background: #1a1a1a;
-            transform: scale(1.02);
+            border-color: #444; /* Borde se aclara un poco */
+            background: linear-gradient(135deg, #222 0%, #1a1a1a 50%, #222 100%); /* Fondo metálico más claro */
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.07); /* Un resplandor suave y blanco */
+            transform: translateY(-2px) scale(1.01); /* Pequeño realce */
+        }
+
+        /* Efecto de destello "recién lavado" */
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: all 0.5s;
+        }
+
+        .link-card:hover::before {
+            left: 100%;
         }
 
         .link-card i {
@@ -92,16 +113,22 @@
             flex-grow: 1;
             margin-left: 10px;
             font-size: 0.95rem;
+            font-weight: 400;
         }
 
         .link-card .arrow {
-            color: #444;
+            color: #333;
             font-size: 0.8rem;
+        }
+
+        /* Sección de Correo (sin flecha y con ícono diferente) */
+        .mail-card i {
+            font-size: 1.2rem;
         }
 
         .footer {
             margin-top: 40px;
-            color: #333;
+            color: #2a2a2a;
             font-size: 0.7rem;
             text-align: center;
             animation-delay: 0.6s;
@@ -145,7 +172,7 @@
         <div style="border-bottom: 1px solid #1a1a1a; margin: 30px 0;"></div>
         <div class="sub-title" style="text-align:center; margin-bottom: 15px;">CORREO</div>
 
-        <a href="mailto:colmenares0910@gmail.com" class="link-card">
+        <a href="mailto:colmenares0910@gmail.com" class="link-card mail-card">
             <i class="far fa-envelope"></i>
             <span>colmenares0910@gmail.com</span>
         </a>
