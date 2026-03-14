@@ -15,6 +15,7 @@
             --border-color: #2a2a2a;
             --polished-gradient: linear-gradient(135deg, #181818 0%, #111 50%, #181818 100%);
             --event-color: #ff3e3e;
+            --online-color: #2ecc71; /* Verde neón para el status */
         }
 
         body {
@@ -29,6 +30,38 @@
             margin: 0;
             padding: 20px;
             overflow-x: hidden; 
+        }
+
+        /* --- NUEVO: LIVE STATUS --- */
+        .status-badge {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 8px 15px;
+            border-radius: 50px;
+            margin-bottom: 25px;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            animation: fadeIn 2s ease forwards;
+            animation-delay: 2.2s;
+            opacity: 0;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--online-color);
+            border-radius: 50%;
+            margin-right: 10px;
+            box-shadow: 0 0 10px var(--online-color);
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
         }
 
         /* --- EFECTO DE EVENTO --- */
@@ -67,9 +100,9 @@
         .progress-bar { width: 0%; height: 100%; background: #fff; animation: load 1.2s ease-in-out forwards; }
         @keyframes load { 0% { width: 0%; } 100% { width: 100%; } }
 
-        /* --- INTERFAZ Y BOTONES CON BRILLO --- */
+        /* --- INTERFAZ --- */
         header, .links-container, .footer { opacity: 0; transform: translateY(20px); animation: fadeInUp 0.8s ease forwards; }
-        header { text-align: center; margin-bottom: 40px; animation-delay: 1.5s; }
+        header { text-align: center; margin-bottom: 30px; animation-delay: 1.5s; }
         header h1 { font-size: 3rem; font-weight: 300; margin: 0; letter-spacing: -1px; }
         header span { color: #555; }
         .sub-title { font-size: 0.7rem; letter-spacing: 4px; color: #444; text-transform: uppercase; margin-top: 10px; }
@@ -88,17 +121,12 @@
             color: white;
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             position: relative;
-            overflow: hidden; /* Importante para el brillo */
+            overflow: hidden;
         }
 
-        /* EFECTO DE BRILLO (SHIMMER) RE-ACTIVADO */
         .link-card::before {
             content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
+            position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
             background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.1), transparent);
             transition: all 0.6s;
         }
@@ -107,22 +135,20 @@
             border-color: #444;
             background: linear-gradient(135deg, #222 0%, #1a1a1a 50%, #222 100%);
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.07);
-            transform: translateY(-2px) scale(1.01);
+            transform: translateY(-2px);
         }
 
-        .link-card:hover::before {
-            left: 100%;
-        }
+        .link-card:hover::before { left: 100%; }
 
         .link-card i { font-size: 1.2rem; width: 30px; }
         .link-card span { flex-grow: 1; margin-left: 10px; font-size: 0.95rem; }
-        .link-card .arrow { color: #333; font-size: 0.8rem; }
 
         .secret-card { background: rgba(40, 40, 40, 0.2); border: 1px dashed #444; margin-top: 30px; }
         .footer { margin-top: 40px; color: #2a2a2a; font-size: 0.7rem; text-align: center; animation-delay: 1.9s; }
         .invisible-counter { display: none; }
 
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { to { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -130,6 +156,11 @@
     <div id="loader">
         <div class="loader-text">SINCRONIZANDO SISTEMA...</div>
         <div class="progress-container"><div class="progress-bar"></div></div>
+    </div>
+
+    <div class="status-badge">
+        <div class="status-dot"></div>
+        <span>ACTUALMENTE: <b>JUGANDO ROBLOX</b></span>
     </div>
 
     <div id="event-container">
@@ -145,23 +176,23 @@
 
     <div class="links-container">
         <a href="https://www.youtube.com/@Sebbioff" target="_blank" class="link-card">
-            <i class="fab fa-youtube"></i><span>YouTube</span><i class="fas fa-chevron-right arrow"></i>
+            <i class="fab fa-youtube"></i><span>YouTube</span><i class="fas fa-chevron-right arrow" style="color:#222; font-size:0.8rem; margin-left:auto;"></i>
         </a>
         <a href="https://www.tiktok.com/@kairhryensbaoe?lang=en" target="_blank" class="link-card">
-            <i class="fab fa-tiktok"></i><span>TikTok</span><i class="fas fa-chevron-right arrow"></i>
+            <i class="fab fa-tiktok"></i><span>TikTok</span><i class="fas fa-chevron-right arrow" style="color:#222; font-size:0.8rem; margin-left:auto;"></i>
         </a>
         <a href="https://www.roblox.com/users/1800241254/profile" target="_blank" class="link-card">
-            <i class="fas fa-gamepad"></i><span>Roblox</span><i class="fas fa-chevron-right arrow"></i>
+            <i class="fas fa-gamepad"></i><span>Roblox</span><i class="fas fa-chevron-right arrow" style="color:#222; font-size:0.8rem; margin-left:auto;"></i>
         </a>
         <a href="https://discord.gg/EbkacuHY" target="_blank" class="link-card">
-            <i class="fab fa-discord" style="color: #5865F2;"></i><span>Discord</span><i class="fas fa-chevron-right arrow"></i>
+            <i class="fab fa-discord" style="color: #5865F2;"></i><span>Discord</span><i class="fas fa-chevron-right arrow" style="color:#222; font-size:0.8rem; margin-left:auto;"></i>
         </a>
         <div style="border-bottom: 1px solid #1a1a1a; margin: 30px 0;"></div>
         <a href="mailto:colmenares0910@gmail.com" class="link-card">
             <i class="far fa-envelope"></i><span>colmenares0910@gmail.com</span>
         </a>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQl3RBotbTP6BGGSRB_Rj6jwcSRXmCROpZ0lF-zIg_VLXihA/viewform" target="_blank" class="link-card secret-card">
-            <i class="fas fa-user-secret"></i><span>Enviar mensaje anónimo...</span><i class="fas fa-lock arrow"></i>
+            <i class="fas fa-user-secret"></i><span>Enviar mensaje anónimo...</span><i class="fas fa-lock arrow" style="color:#222; font-size:0.8rem; margin-left:auto;"></i>
         </a>
     </div>
 
@@ -171,37 +202,25 @@
     </div>
 
     <script>
-        // LÓGICA DEL EVENTO
         function updateEvent() {
             const now = new Date();
             const eventContainer = document.getElementById('event-container');
             const countdownEl = document.getElementById('countdown');
-
-            // Fin: Próximo sábado 3 PM
             let targetDate = new Date();
             targetDate.setDate(now.getDate() + (6 - now.getDay() + 7) % 7);
             targetDate.setHours(15, 0, 0, 0);
-
-            if (now > targetDate && now.getDay() === 6) {
-                targetDate.setDate(targetDate.getDate() + 7);
-            }
-
-            // Mostrar si es horario de evento
+            if (now > targetDate && now.getDay() === 6) targetDate.setDate(targetDate.getDate() + 7);
             eventContainer.style.display = 'block'; 
-            
             const diff = targetDate - now;
             const d = Math.floor(diff / (1000 * 60 * 60 * 24));
             const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const s = Math.floor((diff % (1000 * 60)) / 1000);
-
             countdownEl.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
         }
-
         setInterval(updateEvent, 1000);
         updateEvent();
 
-        // LOADER
         setTimeout(() => {
             const loader = document.getElementById('loader');
             loader.style.opacity = '0';
