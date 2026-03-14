@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sebbi/web</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --card-bg: #141414;
+            --text-color: #ffffff;
+            --border-color: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Animación de entrada general */
+        header, .links-container, .footer {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation-delay: 0.2s;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin: 0;
+            letter-spacing: -1px;
+        }
+
+        header span { color: #666; font-weight: 200; }
+        
+        .sub-title {
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            color: #555;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        .links-container {
+            width: 100%;
+            max-width: 450px;
+            animation-delay: 0.4s;
+        }
+
+        /* Estilo de los botones */
+        .link-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px 25px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .link-card:hover {
+            border-color: #444;
+            background: #1a1a1a;
+            transform: scale(1.02);
+        }
+
+        .link-card i {
+            font-size: 1.2rem;
+            width: 30px;
+        }
+
+        .link-card span {
+            flex-grow: 1;
+            margin-left: 10px;
+            font-size: 0.95rem;
+        }
+
+        .link-card .arrow {
+            color: #444;
+            font-size: 0.8rem;
+        }
+
+        .footer {
+            margin-top: 40px;
+            color: #333;
+            font-size: 0.7rem;
+            text-align: center;
+            animation-delay: 0.6s;
+        }
+
+        /* Animación Keyframes */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>sebbi<span>/</span>web</h1>
+        <div class="sub-title">LINKS OFICIALES</div>
+    </header>
+
+    <div class="links-container">
+        <a href="https://www.youtube.com/@Sebbioff" target="_blank" class="link-card">
+            <i class="fab fa-youtube"></i>
+            <span>YouTube</span>
+            <i class="fas fa-chevron-right arrow"></i>
+        </a>
+
+        <a href="https://www.tiktok.com/@kairhryensbaoe?lang=en" target="_blank" class="link-card">
+            <i class="fab fa-tiktok"></i>
+            <span>TikTok</span>
+            <i class="fas fa-chevron-right arrow"></i>
+        </a>
+
+        <a href="https://www.roblox.com/users/1800241254/profile" target="_blank" class="link-card">
+            <i class="fas fa-gamepad"></i>
+            <span>Roblox</span>
+            <i class="fas fa-chevron-right arrow"></i>
+        </a>
+
+        <div style="border-bottom: 1px solid #1a1a1a; margin: 30px 0;"></div>
+        <div class="sub-title" style="text-align:center; margin-bottom: 15px;">CORREO</div>
+
+        <a href="mailto:colmenares0910@gmail.com" class="link-card">
+            <i class="far fa-envelope"></i>
+            <span>colmenares0910@gmail.com</span>
+        </a>
+    </div>
+
+    <div class="footer">
+        © 2026 sebbi/web
+    </div>
+
+</body>
+</html>
