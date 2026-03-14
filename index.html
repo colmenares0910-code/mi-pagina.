@@ -28,10 +28,10 @@
             min-height: 100vh;
             margin: 0;
             padding: 20px;
-            overflow: hidden; /* Bloquea scroll durante la carga */
+            overflow: hidden; 
         }
 
-        /* IDEA 2: BARRA DE CARGA PRO */
+        /* BARRA DE CARGA PRO */
         #loader {
             position: fixed;
             top: 0;
@@ -75,7 +75,6 @@
             100% { width: 100%; }
         }
 
-        /* Estilos de la página */
         header, .links-container, .footer {
             opacity: 0;
             transform: translateY(20px);
@@ -183,6 +182,11 @@
             animation-delay: 1.9s;
         }
 
+        /* CONTADOR INVISIBLE PARA EL USUARIO */
+        .invisible-counter {
+            display: none;
+        }
+
         @keyframes fadeInUp {
             to {
                 opacity: 1;
@@ -194,7 +198,7 @@
 <body>
 
     <div id="loader">
-        <div class="loader-text">ACTUALIZANDO VERSION....</div>
+        <div class="loader-text">SINCRONIZANDO SISTEMA...</div>
         <div class="progress-container">
             <div class="progress-bar"></div>
         </div>
@@ -246,10 +250,10 @@
 
     <div class="footer">
         © 2026 sebbi/web
+        <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fcolmenares0910-code.github.io%2Fsebbi-web%2F&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false" class="invisible-counter"/>
     </div>
 
     <script>
-        // Desaparecer el loader después de la animación
         setTimeout(() => {
             const loader = document.getElementById('loader');
             loader.style.opacity = '0';
