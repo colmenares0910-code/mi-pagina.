@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>sebbi/web • Oficial</title>
+    <link rel="icon" type="image/png" href="logo.png..png">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         :root {
             --bg-color: #030303;
@@ -27,6 +30,7 @@
             padding: 20px;
         }
 
+        /* Animación de entrada */
         header, .links-container, .footer {
             opacity: 0;
             transform: translateY(20px);
@@ -84,6 +88,7 @@
             transform: translateY(-2px) scale(1.01);
         }
 
+        /* Destello de brillo */
         .link-card::before {
             content: '';
             position: absolute;
@@ -115,7 +120,6 @@
             font-size: 0.8rem;
         }
 
-        /* Estilo especial para el botón secreto */
         .secret-card {
             background: rgba(40, 40, 40, 0.2);
             border: 1px dashed #444;
