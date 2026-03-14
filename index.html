@@ -45,7 +45,7 @@
         .progress-bar { width: 0%; height: 100%; background: #fff; animation: load 1.2s ease-in-out forwards; }
         @keyframes load { 0% { width: 0%; } 100% { width: 100%; } }
 
-        /* --- GALERÍA TEMPORAL (OVERLAY) --- */
+        /* --- GALERÍA TEMPORAL --- */
         #gallery-overlay {
             display: none;
             position: fixed;
@@ -91,6 +91,7 @@
         }
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 62, 62, 0.2); } 70% { box-shadow: 0 0 0 10px rgba(255, 62, 62, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 62, 62, 0); } }
         .event-title { color: var(--event-color); font-weight: 800; letter-spacing: 5px; font-size: 1.1rem; margin-bottom: 5px; }
+        .event-link { color: #555; font-size: 0.65rem; text-decoration: none; display: block; margin-bottom: 10px; }
         .timer { font-family: monospace; font-size: 1.4rem; color: #fff; background: #111; padding: 8px 15px; border-radius: 8px; display: inline-block; border: 1px solid #222; }
 
         /* --- INTERFAZ BASE --- */
@@ -160,6 +161,7 @@
 
     <div id="event-container">
         <div class="event-title">EVENT ABUSE</div>
+        <a href="https://www.roblox.com/games/93796289838633/MATA-A-LOS-THERIANS" target="_blank" class="event-link">roblox.com/games/93796289838633</a>
         <div id="countdown" class="timer">00d 00h 00m 00s</div>
     </div>
 
@@ -220,7 +222,6 @@
             images.forEach(img => {
                 const expireAt = new Date(img.getAttribute('data-expire'));
                 const hasUrl = img.getAttribute('src') !== "";
-
                 if (now < expireAt && hasUrl) {
                     img.style.display = 'block';
                     fotosActivas++;
@@ -231,7 +232,6 @@
 
             document.getElementById('no-photos-msg').style.display = (fotosActivas === 0) ? 'block' : 'none';
 
-            const countdownEl = document.getElementById('countdown');
             let target = new Date();
             target.setDate(now.getDate() + (6 - now.getDay() + 7) % 7);
             target.setHours(15, 0, 0, 0);
@@ -243,7 +243,7 @@
             const h = Math.floor((diff % 86400000) / 3600000);
             const m = Math.floor((diff % 3600000) / 60000);
             const s = Math.floor((diff % 60000) / 1000);
-            countdownEl.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
+            document.getElementById('countdown').innerHTML = `${d}d ${h}h ${m}m ${s}s`;
         }
 
         setInterval(updateSystem, 1000);
