@@ -27,7 +27,7 @@
             padding: 20px;
         }
 
-        header, .links-container, .footer {
+        header, .links-container, .footer, .reflexion {
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.8s ease forwards;
@@ -115,7 +115,6 @@
             font-size: 0.8rem;
         }
 
-        /* Estilo especial para el botón secreto */
         .secret-card {
             background: rgba(40, 40, 40, 0.2);
             border: 1px dashed #444;
@@ -127,12 +126,28 @@
             font-style: italic;
         }
 
-        .footer {
+        /* Estilo para tu frase final */
+        .reflexion {
             margin-top: 40px;
+            text-align: center;
+            max-width: 350px;
+            animation-delay: 0.8s;
+        }
+
+        .reflexion p {
+            color: #666;
+            font-size: 0.85rem;
+            font-style: italic;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .footer {
+            margin-top: 20px;
             color: #2a2a2a;
             font-size: 0.7rem;
             text-align: center;
-            animation-delay: 0.6s;
+            animation-delay: 1s;
         }
 
         @keyframes fadeInUp {
@@ -181,6 +196,10 @@
             <span>Enviar mensaje anónimo...</span>
             <i class="fas fa-lock arrow"></i>
         </a>
+    </div>
+
+    <div class="reflexion">
+        <p>"No sé si fue amor, ilusión o no se.. . Pero cambió algo en mí, y sigo adelante."</p>
     </div>
 
     <div class="footer">
