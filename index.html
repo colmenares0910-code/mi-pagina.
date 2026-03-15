@@ -126,8 +126,10 @@
         <button class="close-gallery" onclick="toggleGallery()">CERRAR GALERÍA</button>
         <div class="gallery-content">
             <h2 style="letter-spacing: 5px; font-size: 0.8rem; color: #444; margin-bottom: 30px;">SISTEMA DE ARCHIVOS TEMPORALES</h2>
-            <img src="https://i.postimg.cc/gktq3b99/image.png" class="temp-img" data-expire="2026-03-14T23:59">
-            <div id="https://i.postimg.cc/gktq3b99/image.png" style="display:none;">
+            
+            <img src="https://i.postimg.cc/gktq3b99/image.png" class="temp-img" data-expire="2026-03-20T23:59">
+            
+            <div id="no-photos-msg" style="display:none;">
                 <i class="fas fa-ghost" style="font-size: 2rem; color: #222; margin-bottom: 10px;"></i>
                 <p style="color: #444; font-size: 0.9rem; letter-spacing: 1px;">EL SISTEMA ESTÁ VACÍO...</p>
             </div>
@@ -191,7 +193,6 @@
     </div>
 
     <script>
-        // Funciones de la Galería
         function toggleGallery() {
             const g = document.getElementById('gallery-overlay');
             const isOpening = g.style.display !== 'flex';
@@ -199,7 +200,6 @@
             document.body.style.overflow = isOpening ? 'hidden' : 'auto';
         }
 
-        // Lógica del System Log
         const logText = document.getElementById('log-text');
         const messages = [
             "> INITIALIZING SYSTEM...", "> LOADING ENCRYPTION...", "> CONNECTION: SECURE", 
@@ -215,11 +215,9 @@
             logIdx = (logIdx + 1) % messages.length;
         }, 2000);
 
-        // Actualización de Tiempos y Eventos
         function updateSystem() {
             const now = new Date();
             
-            // Imágenes temporales
             const images = document.querySelectorAll('.temp-img');
             let fotosActivas = 0;
             images.forEach(img => {
@@ -234,7 +232,6 @@
             });
             document.getElementById('no-photos-msg').style.display = (fotosActivas === 0) ? 'block' : 'none';
 
-            // Countdown
             let target = new Date();
             target.setDate(now.getDate() + (6 - now.getDay() + 7) % 7);
             target.setHours(15, 0, 0, 0);
@@ -252,7 +249,6 @@
         setInterval(updateSystem, 1000);
         updateSystem();
 
-        // Loader
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const loader = document.getElementById('loader');
