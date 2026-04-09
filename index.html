@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>sebbi/web • Oficial</title>
     
-    <link rel="icon" type="https://postimg.cc/7GG9w3s2" href="logo.png..png">
+    <link rel="icon" type="image/png" href="logo.png..png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
@@ -43,7 +43,7 @@
         .progress-bar { width: 0%; height: 100%; background: #fff; animation: load 1.2s ease-in-out forwards; }
         @keyframes load { 0% { width: 0%; } 100% { width: 100%; } }
 
-        /* --- TEMPORIZADOR PREMIUM --- */
+        /* --- TEMPORIZADOR --- */
         .countdown-wrapper {
             opacity: 0;
             transform: translateY(-10px);
@@ -51,24 +51,8 @@
             text-align: center;
             margin-bottom: 10px;
         }
-        .countdown-label {
-            font-size: 0.6rem;
-            letter-spacing: 3px;
-            color: var(--accent-blue);
-            text-transform: uppercase;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        #main-timer {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1.2rem;
-            color: #fff;
-            background: rgba(255,255,255,0.03);
-            padding: 5px 15px;
-            border-radius: 5px;
-            border: 1px solid var(--border-color);
-            display: inline-block;
-        }
+        .countdown-label { font-size: 0.6rem; letter-spacing: 3px; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 5px; font-weight: bold; }
+        #main-timer { font-family: 'Courier New', Courier, monospace; font-size: 1.2rem; color: #fff; background: rgba(255,255,255,0.03); padding: 5px 15px; border-radius: 5px; border: 1px solid var(--border-color); display: inline-block; }
 
         /* --- GALERÍA --- */
         #gallery-overlay {
@@ -83,7 +67,6 @@
 
         /* --- INTERFAZ BASE --- */
         header, .links-container, .footer, .system-log { opacity: 0; transform: translateY(20px); animation: fadeInUp 0.8s ease forwards; }
-        
         header { text-align: center; margin-bottom: 40px; animation-delay: 1.2s; }
         header h1 { font-size: 3.5rem; font-weight: 300; margin: 0; letter-spacing: -2px; }
         header span { color: #555; }
@@ -104,7 +87,6 @@
         .secret-card { background: rgba(40, 40, 40, 0.2); border: 1px dashed #444; margin-top: 25px; }
         .temp-card { background: rgba(0, 150, 255, 0.05); border: 1px solid rgba(0, 150, 255, 0.15); margin-top: 12px; }
         
-        /* --- SYSTEM LOG --- */
         .system-log {
             width: 100%; max-width: 450px; background: rgba(0, 0, 0, 0.4);
             border-left: 2px solid var(--accent-blue); padding: 10px 15px; margin-top: 25px;
@@ -136,7 +118,11 @@
         <button class="close-gallery" onclick="toggleGallery()">CERRAR GALERÍA</button>
         <div class="gallery-content">
             <h2 style="letter-spacing: 5px; font-size: 0.8rem; color: #444; margin-bottom: 30px;">SISTEMA DE ARCHIVOS</h2>
-            <img src="https://postimg.cc/7GG9w3s2" class="temp-img" data-expire="2026-12-31T23:59">
+            
+            <img src="https://i.postimg.cc/gktq3b99/image.png" class="temp-img" data-expire="2026-12-31T23:59">
+            
+            <img src="https://i.postimg.cc/Hx3h03bB/flux-2-max-20251222-b-Genera-un-texto-con.jpg" class="temp-img" data-expire="2026-12-31T23:59">
+            
             <div id="no-photos-msg" style="display:none;">
                 <i class="fas fa-ghost" style="font-size: 2rem; color: #222; margin-bottom: 10px;"></i>
                 <p style="color: #444; font-size: 0.9rem; letter-spacing: 1px;">EL SISTEMA ESTÁ VACÍO...</p>
@@ -198,10 +184,7 @@
         }
 
         const logText = document.getElementById('log-text');
-        const messages = [
-            "> SYSTEM_READY", "> ENCRYPTION_ACTIVE", "> ASSETS_LOADED", 
-            "> PORT_8080_OPEN", "> CACHE_CLEARED", "> STATUS: OPTIMIZED"
-        ];
+        const messages = ["> SYSTEM_READY", "> ENCRYPTION_ACTIVE", "> ASSETS_LOADED", "> PORT_8080_OPEN", "> CACHE_CLEARED", "> STATUS: OPTIMIZED"];
         let logIdx = 0;
         setInterval(() => {
             const line = document.createElement('div');
@@ -211,26 +194,16 @@
             logIdx = (logIdx + 1) % messages.length;
         }, 2500);
 
-        // --- LÓGICA DEL TEMPORIZADOR PERSONALIZADO ---
         function updateMainTimer() {
             const now = new Date();
-            // Fecha objetivo: 9 de Octubre de 2026 (Mes 9 porque Enero es 0)
             const target = new Date(2026, 9, 9, 0, 0, 0);
-            
             const diff = target - now;
-            
-            if (diff <= 0) {
-                document.getElementById('main-timer').innerHTML = "EVENTO INICIADO";
-                return;
-            }
-
+            if (diff <= 0) { document.getElementById('main-timer').innerHTML = "EVENTO INICIADO"; return; }
             const d = Math.floor(diff / 86400000);
             const h = Math.floor((diff % 86400000) / 3600000);
             const m = Math.floor((diff % 3600000) / 60000);
             const s = Math.floor((diff % 60000) / 1000);
-
-            document.getElementById('main-timer').innerHTML = 
-                `${d}d ${h.toString().padStart(2, '0')}h ${m.toString().padStart(2, '0')}m ${s.toString().padStart(2, '0')}s`;
+            document.getElementById('main-timer').innerHTML = `${d}d ${h.toString().padStart(2, '0')}h ${m.toString().padStart(2, '0')}m ${s.toString().padStart(2, '0')}s`;
         }
         setInterval(updateMainTimer, 1000);
         updateMainTimer();
@@ -241,12 +214,7 @@
             let fotosActivas = 0;
             images.forEach(img => {
                 const expireAt = new Date(img.getAttribute('data-expire'));
-                if (now < expireAt) {
-                    img.style.display = 'block';
-                    fotosActivas++;
-                } else {
-                    img.style.display = 'none';
-                }
+                if (now < expireAt) { img.style.display = 'block'; fotosActivas++; } else { img.style.display = 'none'; }
             });
             document.getElementById('no-photos-msg').style.display = (fotosActivas === 0) ? 'block' : 'none';
         }
